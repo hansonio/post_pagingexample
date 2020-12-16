@@ -1,0 +1,32 @@
+@model PagingExample.Pages.Components.Pagination.PaginationViewModel
+
+<div class="d-flex justify-content-center">
+  <nav aria-label="Pagination">
+    <ul class="pagination pg-blue">
+      @if (Model.List.HasPrevious)
+      {
+        <li class="page-item ">
+          <a class="page-link" asp-all-route-data="Model.RouteData" asp-route-p="@(Model.List.CurrentPage - 1)" tabindex="-1" title="previous">
+            <span>&laquo;</span>
+          </a>
+        </li>
+      }
+
+      @for (var i = 1; i <= Model.List.TotalPages; i++)
+      {
+        <li class="page-item @(i == Model.List.CurrentPage ? "active" : "")">
+          <a asp-all-route-data="Model.RouteData" asp-route-p="@i" class="page-link">@i</a>
+        </li>
+      }
+
+      @if (Model.List.HasNext)
+      {
+        <li class="page-item ">
+          <a class="page-link" title="next" asp-all-route-data="Model.RouteData" asp-route-p="@(Model.List.CurrentPage + 1)">
+            <span>&raquo;</span>
+          </a>
+        </li>
+      }
+    </ul>
+  </nav>
+</div>
