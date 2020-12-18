@@ -3,10 +3,11 @@
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
     <UserSecretsId>aspnet-PagingExample-5347353C-3390-4D35-91F8-870161ADE9B3</UserSecretsId>
+
   </PropertyGroup>
 
   <ItemGroup>
-    <None Update="app.db" CopyToOutputDirectory="PreserveNewest" ExcludeFromSingleFile="true" />
+    <None Update="app.db" CopyToOutputDirectory="PreserveNewest" ExcludeFromSingleFile="true"/>
   </ItemGroup>
 
   <ItemGroup>

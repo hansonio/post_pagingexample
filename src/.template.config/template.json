@@ -1,0 +1,17 @@
+
+{
+    "author": "andrewhason",
+    "classifications": [
+        "AspNetCore",
+        "Pagination",
+        "RazorPages"
+    ],
+    "name": "Hanson.io PagingExample",
+    "identity": "HansonIoPagingExample",
+    "shortName": "hio_paging_example",
+    "tags": {
+        "language": "C#"
+    },
+    "sourceName": "PagingExample",
+    "preferNameDirectory": "true"
+}

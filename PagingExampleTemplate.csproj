@@ -1,0 +1,24 @@
+
+<Project Sdk="Microsoft.NET.Sdk">
+<PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+    <PackageType>Template</PackageType>
+    <PackageId>Hansonio.Examples.Paging</PackageId>
+    <PackageVersion>1.0.1</PackageVersion>
+    <IsPackable>true</IsPackable>
+    <Title>Hanson.io Paging Example</Title>
+    <Authors>Andrew Hanson</Authors>
+    <Description>ASP.NET Simple Paging Example</Description>
+    <PackageTags>dotnet-new;template;aspnet;hansonio;paging</PackageTags>
+    <IncludeContentInPack>true</IncludeContentInPack>
+    <IncludeBuildOutput>false</IncludeBuildOutput>
+    <ContentTargetFolders>content</ContentTargetFolders>
+    <EnableDefaultContentItems>false</EnableDefaultContentItems>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Content Include="src\**" Exclude="src\**\bin\**;src\**\obj\**;src\**\.vs\**;src\app.db" />
+    <Compile Remove="**\*" />
+  </ItemGroup>
+
+</Project>
