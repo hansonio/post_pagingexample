@@ -10,7 +10,7 @@ using PagingExample.Models;
 using Faker;
 using PagingExample.Configuration;
 
-namespace MyApp.Namespace
+namespace PagingExample.Pages
 {
     public class WidgetsModel : PageModel
     {
