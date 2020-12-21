@@ -7,11 +7,11 @@ using PagingExample.Models;
 
 namespace PagingExample.Data
 {
-    public class ApplicationDbContext : IdentityDbContext
+    public class ApplicationDbContext : IdentityDbContext<ApplicationUser, ApplicationRole, string>
     {
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
-        {            
+        {
         }
 
         public DbSet<Widget> Widgets{get;set;}

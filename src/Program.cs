@@ -1,19 +1,23 @@
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
+using PagingExample.Data.SeedData;
 
 namespace PagingExample
 {
     public class Program
-    {
+{
         public static void Main(string[] args)
         {
-            CreateHostBuilder(args).Build().Run();
+            var builder = CreateHostBuilder(args);
+
+            if(args.Contains("/seed")){
+                builder.EnsureSeedData(args).Wait();
+                return;
+            }
+
+            builder.Build().Run();
         }
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>
@@ -22,5 +26,6 @@ namespace PagingExample
                 {
                     webBuilder.UseStartup<Startup>();
                 });
+
     }
 }
