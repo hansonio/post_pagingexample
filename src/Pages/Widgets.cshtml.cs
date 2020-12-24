@@ -57,7 +57,7 @@ namespace PagingExample.Pages
 
                 await _dbContext.Widgets.AddAsync(widget);
             }
-            
+
             await _dbContext.SaveChangesAsync();
 
             return RedirectToPage("./Widgets");
