@@ -19,6 +19,7 @@ namespace PagingExample.Pages
         public WidgetsModel(ApplicationDbContext dbContext)
         {
             _dbContext = dbContext;
+            Sort = "name";
         }
 
         public PaginatedList<Widget> Widgets{get;set;}
@@ -29,16 +30,27 @@ namespace PagingExample.Pages
         [BindProperty(SupportsGet = true)]
         public string Filter { get; set; }
 
+        [BindProperty(SupportsGet = true)]
+        public string Sort { get; set; }
+
+        [BindProperty(SupportsGet = true)]
+        public SortDirection Direction { get; set; }
+
          public Dictionary<string, string> LinkData =>
-            new Dictionary<string, string>()
+            new()
             {
                 {"filter", Filter},
                 {"p", Widgets.CurrentPage.ToString()},
+                {"sort", Sort},
+                {"direction", Direction.ToString()}
             };
 
         public async Task<IActionResult> OnGetAsync()
         {
-            Widgets = await _dbContext.Widgets.Filter(Filter).OrderBy(x => x.Name).ToPagedList(PageIndex, AppConfig.PageSize);
+            Widgets = await _dbContext.Widgets
+                                .Filter(Filter)
+                                .OrderBy(Sort, Direction)
+                                .ToPagedList(PageIndex, AppConfig.PageSize);
 
             return Page();
         }
@@ -52,7 +64,7 @@ namespace PagingExample.Pages
                     Description = Faker.Lorem.Sentence(),
                     PartNumber = Faker.Identification.UsPassportNumber(),
                     Quantity = Faker.RandomNumber.Next(0, 10000),
-                    Price = Faker.Finance.Coupon()
+                    Price = decimal.ToDouble(Faker.Finance.Coupon())
                 };
 
                 await _dbContext.Widgets.AddAsync(widget);
@@ -61,6 +73,15 @@ namespace PagingExample.Pages
             await _dbContext.SaveChangesAsync();
 
             return RedirectToPage("./Widgets");
+        }
+
+        public SortDirection GetNextSortDirection(string name, SortDirection defaultOrder){
+            if(Sort?.ToLower() != name?.ToLower()){
+                return defaultOrder;
+            }
+
+
+            return Direction == SortDirection.Asc? SortDirection.Desc: SortDirection.Asc;
         }
     }
 }

@@ -14,6 +14,14 @@ namespace PagingExample.Data
         {
         }
 
+        protected override void OnModelCreating(ModelBuilder builder)
+        {
+
+            base.OnModelCreating(builder);
+
+            //builder.Entity<Widget>().Property(x => x.Price).HasConversion<double>();
+        }
+
         public DbSet<Widget> Widgets{get;set;}
     }
 }
